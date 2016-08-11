@@ -1,5 +1,5 @@
 # PCLSlideInMenu
-Under construction
+A simple view-based slide in menu for iOS.
 
 # Installation
 * Copy ```PCLSlideInMenu.swift``` to your project
