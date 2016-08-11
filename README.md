@@ -71,3 +71,7 @@ func menuItemClickedAt(Index: Int) {
 ![Alt Text](https://github.com/pinchih/PCLSlideInMenu/blob/master/demo2.gif?raw=true)
 ## Rotate animation
 ![Alt Text](https://raw.githubusercontent.com/pinchih/PCLSlideInMenu/master/demo1.gif)
+
+# License
+PCLSlideInMenu is licensed under the terms of the MIT License. 
+For more details, please see the [LICENSE](https://github.com/pinchih/PCLSlideInMenu/blob/master/LICENSE.md) file.
