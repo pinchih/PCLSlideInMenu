@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController,PCLSlideInMenuDataSource,PCLSlideInMenuDelegate{
     
     let myMenu = PCLSlideInMenu()
+    @IBOutlet weak var myLabel:UILabel!
     
 
     override func viewDidLoad() {
@@ -38,16 +39,16 @@ class ViewController: UIViewController,PCLSlideInMenuDataSource,PCLSlideInMenuDe
 
     
     func menuItemSpacing() -> CGFloat {
-        return 70.0
+        return 60.0
     }
     
 
     func menuItemAt(Index: Int) -> MenuItemInfo {
         
         
-        let menuItem1 = MenuItemInfo(iconImage: UIImage(named: "delete")!, iconWidthAndHeight: 60,backgroundColor: UIColor.clearColor())
-        let menuItem2 = MenuItemInfo(iconImage: UIImage(named: "contacts")!, iconWidthAndHeight: 60,backgroundColor:UIColor.clearColor())
-        let menuItem3 = MenuItemInfo(iconImage: UIImage(named: "menu")!, iconWidthAndHeight: 60,backgroundColor:UIColor.clearColor())
+        let menuItem1 = MenuItemInfo(iconImage: UIImage(named: "demo0")!, iconWidthAndHeight: 50,backgroundColor:UIColor.clearColor())
+        let menuItem2 = MenuItemInfo(iconImage: UIImage(named: "demo1")!, iconWidthAndHeight: 50,backgroundColor:UIColor.clearColor())
+        let menuItem3 = MenuItemInfo(iconImage: UIImage(named: "demo2")!, iconWidthAndHeight: 50,backgroundColor:UIColor.clearColor())
         
         return [menuItem1,menuItem2,menuItem3][Index]
         
@@ -57,7 +58,7 @@ class ViewController: UIViewController,PCLSlideInMenuDataSource,PCLSlideInMenuDe
     
     func menuItemClickedAt(Index: Int) {
         
-        print(Index)
+        myLabel.text = String(Index)
         
         
     }

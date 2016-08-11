@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gHy-Mf-hVC">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--PCLSlideInMenu-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PCLSlideInMenu" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,27 +17,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34Z-xW-b0e">
-                                <rect key="frame" x="277" y="101" width="46" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="3N0-dB-odc"/>
-                                    <constraint firstAttribute="width" constant="46" id="Nub-rL-jCU"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="triggerMenu" destination="BYZ-38-t0r" eventType="touchUpInside" id="T2i-of-EaC"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu item clicked:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="02m-1S-1KS">
+                                <rect key="frame" x="228" y="289" width="144" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wiA-3I-6iM">
+                                <rect key="frame" x="300" y="330" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="34Z-xW-b0e" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HDO-B9-wc1"/>
-                            <constraint firstItem="34Z-xW-b0e" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="81" id="hVz-Mj-tuD"/>
+                            <constraint firstItem="wiA-3I-6iM" firstAttribute="top" secondItem="02m-1S-1KS" secondAttribute="bottom" constant="20" id="LZN-bT-hjG"/>
+                            <constraint firstItem="02m-1S-1KS" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="UHY-mB-Tgb"/>
+                            <constraint firstItem="wiA-3I-6iM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bWj-bu-bB0"/>
+                            <constraint firstItem="02m-1S-1KS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="paX-8x-nPK"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="PCLSlideInMenu" id="G9r-Y7-PAf">
+                        <barButtonItem key="rightBarButtonItem" title="Menu" id="obY-uG-qOw">
+                            <connections>
+                                <action selector="triggerMenu" destination="BYZ-38-t0r" id="vuO-cF-7Yq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="myLabel" destination="wiA-3I-6iM" id="at8-9z-KbF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1412" y="398"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="WGo-NZ-oHW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gHy-Mf-hVC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="F5T-Pr-KKc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="AIJ-Fo-Qxd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aLr-ew-Bxk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="711" y="398"/>
         </scene>
     </scenes>
 </document>
