@@ -20,7 +20,7 @@ class ViewController: UIViewController,PCLSlideInMenuDataSource,PCLSlideInMenuDe
         
         myMenu.dataSource = self
         myMenu.delegate = self
-        myMenu.animation = .Default
+        myMenu.animation = .slideIn
         
     }
     
@@ -48,9 +48,9 @@ class ViewController: UIViewController,PCLSlideInMenuDataSource,PCLSlideInMenuDe
     func menuItemAt(Index: Int) -> MenuItemInfo {
         
         
-        let menuItem1 = MenuItemInfo(iconImage: UIImage(named: "demo0_default")!, iconWidthAndHeight: 50,backgroundColor:UIColor.clearColor())
-        let menuItem2 = MenuItemInfo(iconImage: UIImage(named: "demo1_default")!, iconWidthAndHeight: 50,backgroundColor:UIColor.clearColor())
-        let menuItem3 = MenuItemInfo(iconImage: UIImage(named: "demo2_default")!, iconWidthAndHeight: 50,backgroundColor:UIColor.clearColor())
+        let menuItem1 = MenuItemInfo(iconImage: UIImage(named: "demo0_default")!, iconWidthAndHeight: 50,backgroundColor:UIColor.clear)
+        let menuItem2 = MenuItemInfo(iconImage: UIImage(named: "demo1_default")!, iconWidthAndHeight: 50,backgroundColor:UIColor.clear)
+        let menuItem3 = MenuItemInfo(iconImage: UIImage(named: "demo2_default")!, iconWidthAndHeight: 50,backgroundColor:UIColor.clear)
         
         /* 
         

@@ -15,7 +15,7 @@ public protocol PCLSlideInMenuDataSource{
 }
 
 @objc protocol PCLSlideInMenuDelegate{
-    optional func menuItemClickedAt(Index:Int)
+    @objc optional func menuItemClickedAt(Index:Int)
 }
 
 
@@ -31,8 +31,8 @@ extension Int {
 }
 
 enum animationType {
-    case Default
-    case Rotate
+    case slideIn
+    case rotate
 }
 
 
@@ -55,7 +55,7 @@ class PCLSlideInMenu: NSObject {
     var viewArr : [UIImageView] = []
     let offSetInX : CGFloat = 80.0
     let offSetInY : CGFloat = 60.0
-    var animation : animationType = .Default
+    var animation : animationType = .slideIn
     
     override init() {
         super.init()
@@ -71,16 +71,16 @@ class PCLSlideInMenu: NSObject {
         backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
     }
     
-    func setupMenu(info:MenuItemInfo,window:UIWindow,Index:Int) -> UIImageView{
+    func setupMenu(_ info:MenuItemInfo,window:UIWindow,Index:Int) -> UIImageView{
         
         let view = UIImageView()
         
         view.image = info.iconImage
         
         if Index == 0{
-            view.frame = CGRectMake(window.frame.width, window.frame.height - self.offSetInX,info.iconWidthAndHeight, info.iconWidthAndHeight)
+            view.frame = CGRect(x: window.frame.width, y: window.frame.height - self.offSetInX,width: info.iconWidthAndHeight, height: info.iconWidthAndHeight)
         }else{
-            view.frame = CGRectMake(window.frame.width, window.frame.height - self.offSetInX - spacing*CGFloat(Index),info.iconWidthAndHeight, info.iconWidthAndHeight)
+            view.frame = CGRect(x: window.frame.width, y: window.frame.height - self.offSetInX - spacing*CGFloat(Index),width: info.iconWidthAndHeight, height: info.iconWidthAndHeight)
         }
         
         
@@ -88,7 +88,7 @@ class PCLSlideInMenu: NSObject {
         view.layer.cornerRadius = view.frame.width/2
         view.backgroundColor = info.backgroundColor
         
-        view.userInteractionEnabled = true
+        view.isUserInteractionEnabled = true
         view.tag = Index
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action:#selector(menuItemClicked)))
@@ -100,7 +100,7 @@ class PCLSlideInMenu: NSObject {
     // MARK : - Animation
     func showMenu(){
         
-        if let window = UIApplication.sharedApplication().keyWindow{
+        if let window = UIApplication.shared.keyWindow{
             
             backView.frame = window.frame
 
@@ -109,7 +109,7 @@ class PCLSlideInMenu: NSObject {
                 window.addSubview(backView)
                 
                 for i in 0..<itemCount{
-                    let menuItem = dataSource!.menuItemAt(i)
+                    let menuItem = dataSource!.menuItemAt(Index: i)
                     let viewToAdd = setupMenu(menuItem, window: window,Index: i)
                     viewArr.append(viewToAdd)
                     window.addSubview(viewToAdd)
@@ -119,7 +119,7 @@ class PCLSlideInMenu: NSObject {
             }
             
             // Show background View
-            UIView.animateWithDuration(0.5, animations: {
+            UIView.animate(withDuration: 0.5, animations: {
                 self.backView.alpha = 1
             }, completion: nil)
             
@@ -131,7 +131,7 @@ class PCLSlideInMenu: NSObject {
         
     }
     
-    func animateRecursive(Index:Int){
+    func animateRecursive(_ Index:Int){
         
         
         if Index == self.viewArr.count {
@@ -142,19 +142,19 @@ class PCLSlideInMenu: NSObject {
             
          
             
-            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .CurveEaseOut, animations: {
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             
                 let view = self.viewArr[Index]
                 
                 switch self.animation{
                     
-                    case .Default:
-                        view.frame = CGRectMake(view.frame.origin.x - self.offSetInX, view.frame.origin.y,view.frame.width, view.frame.height)
+                    case .slideIn:
+                        view.frame = CGRect(x: view.frame.origin.x - self.offSetInX, y: view.frame.origin.y,width: view.frame.width, height: view.frame.height)
                         break
-                    case .Rotate:
+                    case .rotate:
                         
-                        view.frame = CGRectMake(view.frame.origin.x - self.offSetInX, view.frame.origin.y,view.frame.width, view.frame.height)
-                        view.transform = CGAffineTransformMakeRotation(270.degreesToRadians)
+                        view.frame = CGRect(x: view.frame.origin.x - self.offSetInX, y: view.frame.origin.y,width: view.frame.width, height: view.frame.height)
+                        view.transform = CGAffineTransform(rotationAngle: 270.degreesToRadians)
                         break
                 }
                 
@@ -172,7 +172,7 @@ class PCLSlideInMenu: NSObject {
         
     }
     
-    func menuItemClicked(sender:UITapGestureRecognizer){
+    func menuItemClicked(_ sender:UITapGestureRecognizer){
         
         
         guard let userDelegate = self.delegate?.menuItemClickedAt else{
@@ -188,7 +188,7 @@ class PCLSlideInMenu: NSObject {
     
     func dismissView(){
         
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
         
             self.backView.alpha = 0
             
@@ -198,13 +198,13 @@ class PCLSlideInMenu: NSObject {
                 
                 switch self.animation{
                     
-                    case .Default:
-                        view.frame = CGRectMake(view.frame.origin.x + self.offSetInX, view.frame.origin.y, view.frame.width, view.frame.height)
+                    case .slideIn:
+                        view.frame = CGRect(x: view.frame.origin.x + self.offSetInX, y: view.frame.origin.y, width: view.frame.width, height: view.frame.height)
                         break
-                    case .Rotate:
-                        view.frame = CGRectMake(view.frame.origin.x + self.offSetInX, view.frame.origin.y, view.frame.width, view.frame.height)
+                    case .rotate:
+                        view.frame = CGRect(x: view.frame.origin.x + self.offSetInX, y: view.frame.origin.y, width: view.frame.width, height: view.frame.height)
                         //view.transform = CGAffineTransformMakeRotation(180.degreesToRadians)
-                        view.transform = CGAffineTransformIdentity
+                        view.transform = CGAffineTransform.identity
                         break
                 }
                 
