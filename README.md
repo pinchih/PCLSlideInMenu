@@ -14,7 +14,7 @@ The following steps shows how to setup a basic PCLSlideInMenu.
 // In your view controller, 
 myMenu.dataSource = self
 myMenu.delegate = self
-myMenu.animation = .Default
+myMenu.animation = .slideIn
 ```
 
 * Inplement the PCLSlideInMenuDataSource method
